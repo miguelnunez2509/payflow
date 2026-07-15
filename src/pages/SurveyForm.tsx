@@ -2,7 +2,7 @@ import { useState, FormEvent } from 'react';
 import { useParams } from 'react-router-dom';
 import { Star, CheckCircle2 } from 'lucide-react';
 import { useStore } from '../store/useStore';
-import { SurveyResponse } from '../types';
+import type { SurveyResponse } from '../types';
 
 export default function SurveyForm() {
   const { courseId } = useParams<{ courseId: string }>();

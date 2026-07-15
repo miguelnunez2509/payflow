@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Plus, Trash2, ExternalLink, Users, BookOpen, Bell, Shield } from 'lucide-react';
 import { useStore } from '../store/useStore';
-import { User, Course } from '../types';
+import type { User, Course } from '../types';
 
 type Tab = 'usuarios' | 'cursos' | 'alertas';
 

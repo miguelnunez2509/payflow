@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search, Filter, Plus, ChevronRight, AlertCircle } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import StatusBadge from '../components/StatusBadge';
-import { OrderStatus } from '../types';
+import type { OrderStatus } from '../types';
 
 const STATUSES: { value: string; label: string }[] = [
   { value: '', label: 'Todos' },
@@ -33,7 +33,7 @@ export default function OrdersInbox() {
   });
 
   const formatCurrency = (amount: number) =>
-    new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(amount);
+    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(amount);
 
   const isOverdue = (o: typeof orders[0]) => {
     const due = new Date(o.dueDate);

@@ -1,4 +1,4 @@
-import { OrderStatus } from '../types';
+import type { OrderStatus } from '../types';
 
 const config: Record<OrderStatus, { label: string; classes: string }> = {
   pendiente: { label: 'Pendiente', classes: 'bg-yellow-100 text-yellow-800' },

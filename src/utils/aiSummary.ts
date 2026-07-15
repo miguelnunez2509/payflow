@@ -1,4 +1,4 @@
-import { PaymentOrder, SurveyResponse, Course } from '../types';
+import type { PaymentOrder, SurveyResponse, Course } from '../types';
 
 export function generateWeeklySummary(
   orders: PaymentOrder[],

@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, Save, Clock, User, Calendar, DollarSign, FileText, AlertTriangle } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import StatusBadge from '../components/StatusBadge';
-import { OrderStatus, OrderHistoryEntry, PaymentOrder } from '../types';
+import type { OrderStatus, OrderHistoryEntry, PaymentOrder } from '../types';
 
 const NEXT_STATUSES: Record<OrderStatus, OrderStatus[]> = {
   pendiente: ['en_revision', 'rechazado'],
@@ -14,7 +14,7 @@ const NEXT_STATUSES: Record<OrderStatus, OrderStatus[]> = {
 };
 
 function formatCurrency(amount: number) {
-  return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(amount);
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 }).format(amount);
 }
 
 const STATUS_LABELS: Record<OrderStatus, string> = {
@@ -84,7 +84,7 @@ export default function OrderDetail() {
       title: newOrderForm.title,
       description: newOrderForm.description,
       amount: parseFloat(newOrderForm.amount) || 0,
-      currency: 'COP',
+      currency: 'USD',
       status: 'pendiente',
       priority: newOrderForm.priority,
       category: newOrderForm.category,

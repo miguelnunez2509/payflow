@@ -148,7 +148,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   async function login(email: string, password: string): Promise<boolean> {
     if (password !== 'payflow2024') return false;
-    const { data } = await supabase.from('users').select('*').eq('email', email).single();
+    const { data, error } = await supabase.from('users').select('*').eq('email', email).maybeSingle();
+    if (error) { console.error('Login error:', error); return false; }
     if (!data) return false;
     const user = mapUser(data as Record<string, unknown>);
     setCurrentUser(user);
