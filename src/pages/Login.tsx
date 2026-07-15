@@ -15,8 +15,7 @@ export default function Login() {
     e.preventDefault();
     setError('');
     setLoading(true);
-    await new Promise(r => setTimeout(r, 600));
-    const ok = login(email, password);
+    const ok = await login(email, password);
     setLoading(false);
     if (ok) {
       navigate('/dashboard');

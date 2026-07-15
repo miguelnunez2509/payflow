@@ -49,7 +49,7 @@ export default function OrderDetail() {
     );
   }
 
-  function handleStatusChange(newStatus: OrderStatus) {
+  async function handleStatusChange(newStatus: OrderStatus) {
     if (!order || !currentUser) return;
     const entry: OrderHistoryEntry = {
       id: `h${Date.now()}`,
@@ -66,16 +66,16 @@ export default function OrderDetail() {
       updatedAt: new Date().toISOString().split('T')[0],
       history: [...order.history, entry],
     };
-    updateOrder(updated);
+    await updateOrder(updated);
     setComment('');
   }
 
-  function handleSaveObservations() {
+  async function handleSaveObservations() {
     if (!order) return;
-    updateOrder({ ...order, observations, updatedAt: new Date().toISOString().split('T')[0] });
+    await updateOrder({ ...order, observations, updatedAt: new Date().toISOString().split('T')[0] });
   }
 
-  function handleCreateOrder() {
+  async function handleCreateOrder() {
     if (!currentUser) return;
     const id = `ord-${Date.now()}`;
     const newOrder: PaymentOrder = {
@@ -104,7 +104,7 @@ export default function OrderDetail() {
         changedAt: new Date().toISOString().split('T')[0],
       }],
     };
-    addOrder(newOrder);
+    await addOrder(newOrder);
     navigate(`/orders/${id}`);
   }
 
