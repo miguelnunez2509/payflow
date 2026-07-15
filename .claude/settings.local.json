@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(ls \"C:\\\\Users\\\\MIGUEL\\\\Pictures\\\\Screenshots\\\\PayFlow\\\\Nueva carpeta\\\\PAYFLOW\\\\node_modules\\\\tailwindcss\\\\\" | Select-Object -First 10)",
+      "Bash(npm install *)"
+    ]
+  }
+}
