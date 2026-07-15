@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode, createElement } from 'react';
 import { supabase } from '../lib/supabase';
-import {
-  User, PaymentOrder, Course, SurveyResponse, Alert,
+import type {
+  User, PaymentOrder, Course, SurveyResponse, AppAppAlert,
   OrderHistoryEntry, OrderStatus
 } from '../types';
 
@@ -74,10 +74,10 @@ function mapSurveyResponse(r: Record<string, unknown>): SurveyResponse {
   };
 }
 
-function mapAlert(r: Record<string, unknown>): Alert {
+function mapAppAlert(r: Record<string, unknown>): AppAlert {
   return {
     id: r.id as string,
-    type: r.type as Alert['type'],
+    type: r.type as AppAlert['type'],
     title: r.title as string,
     message: r.message as string,
     relatedId: r.related_id as string | undefined,
@@ -93,7 +93,7 @@ interface AppContextType {
   orders: PaymentOrder[];
   courses: Course[];
   surveyResponses: SurveyResponse[];
-  alerts: Alert[];
+  alerts: AppAlert[];
   users: User[];
   loading: boolean;
   login: (email: string, password: string) => Promise<boolean>;
@@ -102,7 +102,7 @@ interface AppContextType {
   updateOrder: (order: PaymentOrder) => Promise<void>;
   addSurveyResponse: (response: SurveyResponse) => Promise<void>;
   addCourse: (course: Course) => Promise<void>;
-  markAlertRead: (id: string) => Promise<void>;
+  markAppAlertRead: (id: string) => Promise<void>;
   addUser: (user: User) => Promise<void>;
 }
 
@@ -116,7 +116,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [orders, setOrders] = useState<PaymentOrder[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
   const [surveyResponses, setSurveyResponses] = useState<SurveyResponse[]>([]);
-  const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [alerts, setAppAlerts] = useState<AppAlert[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -142,7 +142,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setOrders(mappedOrders);
     setCourses(((coursesRes.data ?? []) as Record<string, unknown>[]).map(mapCourse));
     setSurveyResponses(((responsesRes.data ?? []) as Record<string, unknown>[]).map(mapSurveyResponse));
-    setAlerts(((alertsRes.data ?? []) as Record<string, unknown>[]).map(mapAlert));
+    setAppAlerts(((alertsRes.data ?? []) as Record<string, unknown>[]).map(mapAppAlert));
     setLoading(false);
   }
 
@@ -219,9 +219,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     await loadAll();
   }
 
-  async function markAlertRead(id: string): Promise<void> {
+  async function markAppAlertRead(id: string): Promise<void> {
     await supabase.from('alerts').update({ is_read: true }).eq('id', id);
-    setAlerts(prev => prev.map(a => a.id === id ? { ...a, isRead: true } : a));
+    setAppAlerts(prev => prev.map(a => a.id === id ? { ...a, isRead: true } : a));
   }
 
   async function addUser(user: User): Promise<void> {
@@ -238,7 +238,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       value: {
         currentUser, orders, courses, surveyResponses, alerts, users, loading,
         login, logout, addOrder, updateOrder, addSurveyResponse,
-        addCourse, markAlertRead, addUser,
+        addCourse, markAppAlertRead, addUser,
       },
     },
     children

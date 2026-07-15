@@ -1,4 +1,4 @@
-import { User, PaymentOrder, Course, SurveyResponse, Alert } from '../types';
+import type { User, PaymentOrder, Course, SurveyResponse, AppAlert } from '../types';
 
 export const mockUsers: User[] = [
   {
@@ -178,7 +178,7 @@ export const mockSurveyResponses: SurveyResponse[] = [
   { id: 'sr9', courseId: 'c4', respondentName: 'Elena P.', responses: { q1: 7, q2: 4, q3: 'Buen curso, lo recomendaría.' }, npsScore: 7, overallRating: 4, comments: 'Buen curso, lo recomendaría.', submittedAt: '2024-07-11' },
 ];
 
-export const mockAlerts: Alert[] = [
+export const mockAlerts: AppAlert[] = [
   { id: 'a1', type: 'orden_retrasada', title: 'Orden vencida', message: 'OP-2024-004 supera su fecha límite sin ejecutarse.', relatedId: 'ord-004', isRead: false, createdAt: '2024-07-12' },
   { id: 'a2', type: 'aprobacion_pendiente', title: 'Aprobación pendiente', message: 'OP-2024-002 lleva 4 días sin aprobación.', relatedId: 'ord-002', isRead: false, createdAt: '2024-07-12' },
   { id: 'a3', type: 'encuesta_completada', title: 'Encuesta completada', message: 'Curso "Seguridad Industrial Básica" recibió 9 respuestas.', relatedId: 'c4', isRead: true, createdAt: '2024-07-11' },

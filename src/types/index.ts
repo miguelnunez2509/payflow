@@ -68,7 +68,7 @@ export interface SurveyResponse {
   submittedAt: string;
 }
 
-export interface Alert {
+export interface AppAlert {
   id: string;
   type: 'orden_retrasada' | 'aprobacion_pendiente' | 'nps_bajo' | 'encuesta_completada';
   title: string;
