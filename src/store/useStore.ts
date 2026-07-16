@@ -1,7 +1,7 @@
-import { createContext, useContext, useEffect, useState, ReactNode, createElement } from 'react';
+import { createContext, useContext, useEffect, useState, createElement, type ReactNode } from 'react';
 import { supabase } from '../lib/supabase';
 import type {
-  User, PaymentOrder, Course, SurveyResponse, AppAppAlert,
+  User, PaymentOrder, Course, SurveyResponse, AppAlert,
   OrderHistoryEntry, OrderStatus
 } from '../types';
 

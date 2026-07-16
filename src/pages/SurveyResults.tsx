@@ -2,18 +2,12 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  RadialBarChart, RadialBar, PieChart, Pie, Cell
+  PieChart, Pie, Cell
 } from 'recharts';
 import { Star, Users, TrendingUp, MessageSquare, ExternalLink, Sparkles } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 const NPS_COLORS = { promotor: '#10b981', neutro: '#f59e0b', detractor: '#ef4444' };
-
-function getNPSLabel(score: number) {
-  if (score >= 9) return 'Promotor';
-  if (score >= 7) return 'Neutro';
-  return 'Detractor';
-}
 
 function analyzeComments(comments: string[]): string {
   const positive = ['excelente', 'bueno', 'útil', 'dinámico', 'práctico', 'aprendí', 'recomendaría'];

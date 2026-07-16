@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard, FileText, ClipboardList, BarChart2,
-  Settings, LogOut, Bell, ChevronRight
+  Settings, LogOut, ChevronRight
 } from 'lucide-react';
 import { useStore } from '../store/useStore';
 

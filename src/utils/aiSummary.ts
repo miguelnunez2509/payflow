@@ -14,9 +14,6 @@ export function generateWeeklySummary(
   const executed = orders.filter(o => o.status === 'ejecutado').length;
 
   const npsScores = responses.map(r => r.npsScore);
-  const avgNPS = npsScores.length > 0
-    ? Math.round(npsScores.reduce((a, b) => a + b, 0) / npsScores.length * 10) / 10
-    : 0;
 
   const promoters = npsScores.filter(s => s >= 9).length;
   const detractors = npsScores.filter(s => s <= 6).length;

@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import { useParams } from 'react-router-dom';
 import { Star, CheckCircle2 } from 'lucide-react';
 import { useStore } from '../store/useStore';
@@ -16,10 +16,6 @@ export default function SurveyForm() {
   const [name, setName] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [hoverRating, setHoverRating] = useState<number | null>(null);
-
-  const npsLabels: Record<number, string> = {
-    0: 'Muy improbable', 5: 'Neutro', 10: 'Muy probable'
-  };
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();

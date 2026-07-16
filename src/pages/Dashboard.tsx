@@ -3,7 +3,7 @@ import {
   AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
 } from 'recharts';
-import { TrendingUp, Clock, CheckCircle2, XCircle, Star, Users, Bell, Sparkles } from 'lucide-react';
+import { TrendingUp, Clock, CheckCircle2, Star, Bell, Sparkles } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { generateWeeklySummary } from '../utils/aiSummary';
 
@@ -26,7 +26,7 @@ const STATUS_LABELS: Record<string, string> = {
 const MONTHS = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul'];
 
 export default function Dashboard() {
-  const { orders, surveyResponses, courses, alerts, markAlertRead } = useStore();
+  const { orders, surveyResponses, courses, alerts, markAppAlertRead } = useStore();
   const [showAI, setShowAI] = useState(false);
 
   const metrics = useMemo(() => {
@@ -125,7 +125,7 @@ export default function Dashboard() {
                 <p className="text-sm font-medium text-amber-800">{alert.title}</p>
                 <p className="text-xs text-amber-700 mt-0.5">{alert.message}</p>
               </div>
-              <button onClick={() => markAlertRead(alert.id)} className="text-xs text-amber-600 hover:text-amber-800 shrink-0">
+              <button onClick={() => markAppAlertRead(alert.id)} className="text-xs text-amber-600 hover:text-amber-800 shrink-0">
                 Marcar leída
               </button>
             </div>
